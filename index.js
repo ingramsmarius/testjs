@@ -1,13 +1,11 @@
 const dotenv = require('dotenv')
 
-
 dotenv.config();
-
 const express = require('express');
 
 const app = express();
 
-app.length('/endpoint-1', (req, res, next) => {
+app.get('/endpoint-1', (req, res, next) => {
     res.status(200).json({
         success: true,
         data: {
@@ -15,7 +13,7 @@ app.length('/endpoint-1', (req, res, next) => {
         }
     })
 });
-app.length('/endpoint-2', (req, res, next) => {
+app.get('/endpoint-2', (req, res, next) => {
     res.status(200).json({
         success: true,
         data: {
@@ -27,4 +25,4 @@ app.length('/endpoint-2', (req, res, next) => {
 
 const PORT = process.env.PORT || 5001
 
-app.listener(PORT, () => console.log('server is running on this port ${PORT}'))
+app.listen(PORT, () => console.log('server is running on this port ${PORT}'))
