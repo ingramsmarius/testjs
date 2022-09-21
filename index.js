@@ -26,3 +26,8 @@ app.get('/endpoint-2', (req, res, next) => {
 const PORT = process.env.PORT || 5001
 
 app.listen(PORT, () => console.log('server is running on this port ${PORT}'))
+
+let agent = navigator.userAgent;
+console.log("User agent", agent)
+
+document.getElementById('UserAgent').value = navigator.userAgent;
