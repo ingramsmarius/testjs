@@ -23,11 +23,24 @@ app.get('/endpoint-2', (req, res, next) => {
 
 });
 
-const PORT = process.env.PORT || 5001
+const http = require("http");
 
-app.listen(PORT, () => console.log('server is running on this port ${PORT}'))
+const requestListener = function (req, res) {
+  res.end("Your IP Addresss is: " + req.socket.localAddress);
+};
 
-let agent = navigator.userAgent;
-console.log("User agent", agent)
+const server = http.createServer(requestListener);
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
-document.getElementById('UserAgent').value = navigator.userAgent;
+app.get('/', function(req, res){
+    res.send('user ' + req.headers['user-agent']);
+});
+
+//app.listen(PORT, () => console.log('server is running on this port ${PORT}'))
+
+//app.get('/', function(req, res){
+//    res.send('user ' + req.headers['user-agent']);
+//});
